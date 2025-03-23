@@ -1,33 +1,63 @@
-# React + TypeScript + Vite
+# Candidate Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+A candidate search application that calls the GitHub API and renders data in the browser.
 
-Currently, two official plugins are available:
+[Candidate Search Screenshot]()
 
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Installation Instructions](#installation-instructions)
+- [Usage Information](#usage-information)
+- [License](#license)
+- [Technologies Used](#technologies-used)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Testing Instructions](#testing-instructions)
+- [API Reference](#api-reference)
+- [Contact](#contact)
+- [Resources](#resources)
 
-## Expanding the ESLint configuration
+## Installation Instructions
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/ellimckinley/candidate-search.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd candidate-search
 
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. In the terminal, run the following command to start the development server:
+    ```bash
+    npm run dev
+    ```
 
-* Configure the top-level `parserOptions` property as follows:
+## Usage Information
+1. Enter...
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## License
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
+This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## Technologies Used
+- React
+- JavaScript
+- TypeScript
+- GitHub API
+- Render
+
+## API Reference
+- [OpenWeather 5 Day Forecast API](https://openweathermap.org/forecast5)
+- [OpenWeather Geocode API](https://openweathermap.org/api/geocoding-api)
+
+## Contribution Guidelines
+Not accepting contributions at this time.
+
+## Contact
+For additional questions and instructions, please contact me at [elli.mckinley@gmail.com](mailto:elli.mckinley@gmail.com).
+
+Checkout my other GitHub projects: @ellimckinley.
+
+## Resources
+- GitHub for providing APIs.
+
+Deployed Application: https://weather-dashboard-vm5a.onrender.com
