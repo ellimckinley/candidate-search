@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CandidateSearch = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +12,8 @@ const CandidateSearch = () => {
   const [userIndex, setUserIndex] = useState(0);
   const [users, setUsers] = useState<{ login: string }[]>([]);
   const [reposUrl, setReposUrl] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (username) {
@@ -88,8 +91,15 @@ const CandidateSearch = () => {
 
   const handleSaveCandidate = () => {
     const savedCandidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
+    if (savedCandidates.includes(username)) {
+      setAlertMessage('Candidate is already added to list.');
+      setTimeout(() => setAlertMessage(''), 3000); // Clear the alert after 3 seconds
+      return;
+    }
     const updatedCandidates = [...savedCandidates, username];
     localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
+    setAlertMessage('✅ Candidate saved successfully!');
+    setTimeout(() => setAlertMessage(''), 3000); // Clear the alert after 3 seconds
     console.log('Candidate saved:', {
       username,
       email,
@@ -98,6 +108,10 @@ const CandidateSearch = () => {
       bio,
       avatar,
     });
+  };
+
+  const handleViewSavedCandidates = () => {
+    navigate('/SavedCandidates');
   };
 
   useEffect(() => {
@@ -110,8 +124,15 @@ const CandidateSearch = () => {
       <h1>Candidate Search</h1>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '16px' }}>
         <button onClick={handleNextUser}>Next User</button>
-        <button onClick={handleSaveCandidate}>Save Candidate</button>
+        <button onClick={handleSaveCandidate}>Save to List</button>
+        <button onClick={handleViewSavedCandidates}>View Saved Users</button>
       </div>
+
+      {alertMessage && (
+        <div style={{ marginTop: '16px', color: 'white', fontWeight: 'bold', textAlign: 'center' }}>
+          {alertMessage}
+        </div>
+      )}
 
       <div style={{ border: '1px solid #ccc', padding: '16px', marginTop: '16px' }}>
         {avatar && <img src={avatar} alt="Avatar" style={{ width: '100px', borderRadius: '50%' }} />}
@@ -141,8 +162,6 @@ const CandidateSearch = () => {
 };
 
 export default CandidateSearch;
-
-
 
 
 
