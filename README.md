@@ -46,8 +46,7 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) li
 - Render
 
 ## API Reference
-- [OpenWeather 5 Day Forecast API](https://openweathermap.org/forecast5)
-- [OpenWeather Geocode API](https://openweathermap.org/api/geocoding-api)
+- [GitHub API](https://api.github.com/)
 
 ## Contribution Guidelines
 Not accepting contributions at this time.
@@ -58,6 +57,6 @@ For additional questions and instructions, please contact me at [elli.mckinley@g
 Checkout my other GitHub projects: @ellimckinley.
 
 ## Resources
-- GitHub for providing APIs.
+- GitHub for providing personal access token to APIs.
 
-Deployed Application: https://weather-dashboard-vm5a.onrender.com
+Deployed Application: https://candidate-search-qo4q.onrender.com
