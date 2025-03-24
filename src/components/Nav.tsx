@@ -11,28 +11,19 @@ const Nav = () => {
           color: isActive ? '#535bf2' : '#646cff',
         })}
       >
-        Home
+        Home/ Candidate Search
       </NavLink>
       <NavLink
-        to="/about"
+        to="/SavedCandidates"
         style={({ isActive }) => ({
           margin: '0 1rem',
           textDecoration: isActive ? 'underline' : 'none',
           color: isActive ? '#535bf2' : '#646cff',
         })}
       >
-        About
+        Saved Candidates
       </NavLink>
-      <NavLink
-        to="/contact"
-        style={({ isActive }) => ({
-          margin: '0 1rem',
-          textDecoration: isActive ? 'underline' : 'none',
-          color: isActive ? '#535bf2' : '#646cff',
-        })}
-      >
-        Contact
-      </NavLink>
+      
     </nav>
   );
 };

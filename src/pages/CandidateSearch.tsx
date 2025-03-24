@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 
 const CandidateSearch = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
   const [company, setCompany] = useState('');
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState('');
   const [userIndex, setUserIndex] = useState(0);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<{ login: string }[]>([]);
   const [reposUrl, setReposUrl] = useState('');
 
   useEffect(() => {
@@ -17,12 +18,28 @@ const CandidateSearch = () => {
       fetch(`https://api.github.com/users/${username}`)
         .then((response) => response.json())
         .then((user) => {
-          setEmail(user.email || 'Email not available');
+          setName(user.name || 'Name not available');
           setLocation(user.location || 'Location not available');
           setCompany(user.company || 'Company not available');
           setBio(user.bio || 'Bio not available');
           setAvatar(user.avatar_url || '');
           setReposUrl(user.html_url ? `${user.html_url}?tab=repositories` : '');
+
+          // Fetch user email from GitHub API
+          fetch(`https://api.github.com/user/emails`, {
+            headers: {
+              Authorization: `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`, // Replace with your GitHub token
+            },
+          })
+            .then((response) => response.json())
+            .then((emails: { primary: boolean; email: string }[]) => {
+              const primaryEmail = emails.find((email) => email.primary)?.email || 'Email not available';
+              setEmail(primaryEmail);
+            })
+            .catch((error) => {
+              console.error('Error fetching user emails:', error);
+              setEmail('Email not available');
+            });
         })
         .catch((error) => {
           console.error('Error fetching user data:', error);
@@ -44,6 +61,23 @@ const CandidateSearch = () => {
       });
   };
 
+  const fetchFullName = () => {
+    if (username) {
+      fetch(`https://api.github.com/users/${username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.name) {
+            console.log('Full Name:', data.name);
+          } else {
+            console.log('Full Name not available');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching full name:', error);
+        });
+    }
+  };
+
   const handleNextUser = () => {
     if (users.length > 0) {
       const nextIndex = (userIndex + 1) % users.length;
@@ -53,6 +87,9 @@ const CandidateSearch = () => {
   };
 
   const handleSaveCandidate = () => {
+    const savedCandidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
+    const updatedCandidates = [...savedCandidates, username];
+    localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
     console.log('Candidate saved:', {
       username,
       email,
@@ -65,6 +102,7 @@ const CandidateSearch = () => {
 
   useEffect(() => {
     fetchUsers();
+    fetchFullName();
   }, []);
 
   return (
@@ -76,6 +114,11 @@ const CandidateSearch = () => {
       </div>
 
       <div style={{ border: '1px solid #ccc', padding: '16px', marginTop: '16px' }}>
+        {avatar && <img src={avatar} alt="Avatar" style={{ width: '100px', borderRadius: '50%' }} />}
+        <h2>Name:</h2>
+        <p>{name}</p>
+        <h2>Username:</h2>
+        <p>{username}</p>
         <h2>Repositories:</h2>
         {reposUrl ? (
           <a href={reposUrl} target="_blank" rel="noopener noreferrer">
@@ -92,7 +135,6 @@ const CandidateSearch = () => {
         <p>{company}</p>
         <h2>Bio:</h2>
         <p>{bio}</p>
-        {avatar && <img src={avatar} alt="Avatar" style={{ width: '100px', borderRadius: '50%' }} />}
       </div>
     </div>
   );
