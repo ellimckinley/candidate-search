@@ -18,7 +18,11 @@ const CandidateSearch = () => {
   useEffect(() => {
     if (username) {
       // Fetch user details from GitHub API
-      fetch(`https://api.github.com/users/${username}`)
+      fetch(`https://api.github.com/users/${username}`, {
+        // headers: {
+        //   Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`, // Use GitHub token from .env file
+        // },
+      })
         .then((response) => response.json())
         .then((user) => {
           setName(user.name || 'Name not available');
@@ -30,19 +34,19 @@ const CandidateSearch = () => {
 
           // Fetch user email from GitHub API
           fetch(`https://api.github.com/user/emails`, {
-            headers: {
-              Authorization: `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`, // Replace with your GitHub token
-            },
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`, // Use GitHub token from .env file
+        },
           })
-            .then((response) => response.json())
-            .then((emails: { primary: boolean; email: string }[]) => {
-              const primaryEmail = emails.find((email) => email.primary)?.email || 'Email not available';
-              setEmail(primaryEmail);
-            })
-            .catch((error) => {
-              console.error('Error fetching user emails:', error);
-              setEmail('Email not available');
-            });
+        .then((response) => response.json())
+        .then((emails: { primary: boolean; email: string }[]) => {
+          const primaryEmail = emails.find((email) => email.primary)?.email || 'Email not available';
+          setEmail(primaryEmail);
+        })
+        .catch((error) => {
+          console.error('Error fetching user emails:', error);
+          setEmail('Email not available');
+        });
         })
         .catch((error) => {
           console.error('Error fetching user data:', error);
@@ -136,11 +140,9 @@ const CandidateSearch = () => {
 
       <div style={{ border: '1px solid #ccc', padding: '16px', marginTop: '16px' }}>
         {avatar && <img src={avatar} alt="Avatar" style={{ width: '100px', borderRadius: '50%' }} />}
-        <h2>Name:</h2>
-        <p>{name}</p>
-        <h2>Username:</h2>
-        <p>{username}</p>
-        <h2>Repositories:</h2>
+        <h3>Name:</h3>
+        <p>{name}  | @{username}</p>
+        <h3>Repositories:</h3>
         {reposUrl ? (
           <a href={reposUrl} target="_blank" rel="noopener noreferrer">
             View Repositories on GitHub
@@ -148,13 +150,13 @@ const CandidateSearch = () => {
         ) : (
           <p>Repositories not available</p>
         )}
-        <h2>Location:</h2>
+        <h3>Location:</h3>
         <p>{location}</p>
-        <h2>Email:</h2>
+        <h3>Email:</h3>
         <p>{email}</p>
-        <h2>Company:</h2>
+        <h3>Company:</h3>
         <p>{company}</p>
-        <h2>Bio:</h2>
+        <h3>Bio:</h3>
         <p>{bio}</p>
       </div>
     </div>

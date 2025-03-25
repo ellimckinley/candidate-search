@@ -36,7 +36,6 @@ const SavedCandidates = () => {
           <thead>
             <tr>
               <th>Avatar</th>
-              <th>Username</th>
               <th>Name</th>
               <th>Location</th>
               <th>Email</th>
@@ -51,8 +50,11 @@ const SavedCandidates = () => {
                 <td>
                   <img src={candidate.avatar_url} alt={candidate.login} width="50" />
                 </td>
-                <td>{candidate.login || "N/A"}</td>
-                <td>{candidate.name || "N/A"}</td>
+                <td>
+                  {candidate.name || "N/A"}
+                  <br />
+                  ({candidate.login || "N/A"})
+                </td>
                 <td>{candidate.location || "N/A"}</td>
                 <td>{candidate.email || "N/A"}</td>
                 <td>{candidate.company || "N/A"}</td>
