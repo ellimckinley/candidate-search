@@ -3,7 +3,8 @@
 ## Description
 A candidate search application that calls the GitHub API and renders data in the browser.
 
-[Candidate Search Screenshot]()
+[Candidate Search Screenshot](./public/Candidate_Search.png)
+[Saved Candidates Screenshot](./public/Saved_Candidates.png)
 
 ## Table of Contents
 - [Installation Instructions](#installation-instructions)
@@ -59,4 +60,4 @@ Checkout my other GitHub projects: @ellimckinley.
 ## Resources
 - GitHub for providing personal access token to APIs.
 
-Deployed Application: https://candidate-search-qo4q.onrender.com
+Deployed Application: [https://candidate-search-emc.onrender.com/](https://candidate-search-emc.onrender.com/)
