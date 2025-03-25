@@ -3,6 +3,8 @@
 ## Description
 A candidate search application that calls the GitHub API and renders data in the browser.
 
+Deployed Application: [https://candidate-search-emc.onrender.com/](https://candidate-search-emc.onrender.com/)
+
 [Candidate Search Screenshot](./public/Candidate_Search.png)
 [Saved Candidates Screenshot](./public/Saved_Candidates.png)
 
@@ -32,7 +34,10 @@ A candidate search application that calls the GitHub API and renders data in the
     ```
 
 ## Usage Information
-1. Enter...
+1. From Candidate Search page, use Next Candidate to browse through candidates.
+2. From Candidate Search page, use Save to List to add user to Saved Candidates table. 
+3. From Candidate Search page, use View Saved Users to view the Saved Candidates table. 
+4. From Saved Candidates page, use Remove to delete the user from the Saved Candidates table. 
 
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -60,4 +65,3 @@ Checkout my other GitHub projects: @ellimckinley.
 ## Resources
 - GitHub for providing personal access token to APIs.
 
-Deployed Application: [https://candidate-search-emc.onrender.com/](https://candidate-search-emc.onrender.com/)
