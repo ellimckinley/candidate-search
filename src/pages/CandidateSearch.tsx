@@ -33,9 +33,9 @@ const CandidateSearch = () => {
           setReposUrl(user.html_url ? `${user.html_url}?tab=repositories` : '');
 
           // Fetch user email from GitHub API
-          fetch(`https://api.github.com/user/emails`, {
+          fetch(`https://api.github.com/user/public_emails`, {
         headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`, // Use GitHub token from .env file
+          Authorization: `Bearer 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`, // Use GitHub token from .env file
         },
           })
         .then((response) => response.json())
@@ -128,7 +128,7 @@ const CandidateSearch = () => {
       <h1>Candidate Search</h1>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '16px' }}>
         <button onClick={handleNextUser}>Next User</button>
-        <button onClick={handleSaveCandidate}>Save to List</button>
+        <button onClick={handleSaveCandidate}>Add</button>
         <button onClick={handleViewSavedCandidates}>View Saved Users</button>
       </div>
 
